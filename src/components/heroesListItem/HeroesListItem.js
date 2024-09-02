@@ -1,4 +1,11 @@
-const HeroesListItem = ({ name, description, element }) => {
+import { connect } from 'react-redux';
+import { deleteHero } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+
+const HeroesListItem = ({ id, name, description, element }) => {
+	const heroes = useSelector((state) => state.heroes);
+	const dispatch = useDispatch();
+
 	let elementClassName;
 
 	switch (element) {
@@ -37,6 +44,7 @@ const HeroesListItem = ({ name, description, element }) => {
 					type='button'
 					className='btn-close btn-close'
 					aria-label='Close'
+					onClick={() => dispatch(deleteHero(heroes, id))}
 				></button>
 			</span>
 		</li>

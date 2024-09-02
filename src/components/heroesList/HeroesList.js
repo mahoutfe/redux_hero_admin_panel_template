@@ -42,13 +42,7 @@ const HeroesList = () => {
 		}
 
 		return arr.map(({ id, ...props }) => {
-			return (
-				<HeroesListItem
-					key={id}
-					{...props}
-					onClick={() => dispatch(deleteHero(heroes, id))}
-				/>
-			);
+			return <HeroesListItem key={id} {...props} />;
 		});
 	};
 
