@@ -46,7 +46,7 @@ const HeroesList = () => {
 				<HeroesListItem
 					key={id}
 					{...props}
-					onClick={() => dispatch(deleteHero(id))}
+					onClick={() => dispatch(deleteHero(heroes, id))}
 				/>
 			);
 		});
