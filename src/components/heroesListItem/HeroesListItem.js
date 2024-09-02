@@ -1,11 +1,4 @@
-import { connect } from 'react-redux';
-import { deleteHero } from '../../actions';
-import { useDispatch, useSelector } from 'react-redux';
-
 const HeroesListItem = ({ name, description, element, onDelete }) => {
-	const heroes = useSelector((state) => state.heroes);
-	const dispatch = useDispatch();
-
 	let elementClassName;
 
 	switch (element) {
