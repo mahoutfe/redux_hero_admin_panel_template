@@ -17,16 +17,16 @@ export const heroesFetchingError = () => {
 	};
 };
 
-export const deleteHero = (heroes, id) => {
+export const heroDeleted = (heroes, id) => {
 	return {
-		type: 'HERO_DELETING',
+		type: 'HERO_DELETED',
 		payload: heroes.filter((item) => item.id !== id),
 	};
 };
 
-export const addHero = (heroes, value) => {
+export const heroAdded = (heroes, value) => {
 	return {
-		type: 'HERO_ADDING',
+		type: 'HERO_ADDED',
 		payload: heroes.concat(value),
 	};
 };

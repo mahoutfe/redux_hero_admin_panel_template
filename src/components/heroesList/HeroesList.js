@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHttp } from '../../hooks/http.hook';
 
 import {
-	deleteHero,
+	heroDeleted,
 	heroesFetched,
 	heroesFetching,
 	heroesFetchingError,
@@ -47,7 +47,7 @@ const HeroesList = () => {
 					key={id}
 					{...props}
 					onDelete={() => {
-						dispatch(deleteHero(heroes, id));
+						dispatch(heroDeleted(heroes, id));
 						request(`http://localhost:3001/heroes/${id}`, 'DELETE');
 					}}
 				/>

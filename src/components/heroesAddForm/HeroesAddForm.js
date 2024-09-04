@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
 import { useHttp } from '../../hooks/http.hook';
 
-import { addHero } from '../../actions';
+import { heroAdded } from '../../actions';
 
 const HeroesAddForm = () => {
 	const { heroes } = useSelector((state) => state);
@@ -40,7 +40,7 @@ const HeroesAddForm = () => {
 			})}
 			onSubmit={(values) => {
 				console.log(JSON.stringify(values, null, 2));
-				dispatch(addHero(heroes, values));
+				dispatch(heroAdded(heroes, values));
 				request(
 					'http://localhost:3001/heroes',
 					'POST',
