@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
 import { useHttp } from '../../hooks/http.hook';
 
-import { heroAdded } from '../../actions';
+import { heroAdded, heroAdding, heroAddingError } from '../../actions';
 
 const HeroesAddForm = () => {
 	const { heroes } = useSelector((state) => state);
@@ -40,12 +40,14 @@ const HeroesAddForm = () => {
 			})}
 			onSubmit={(values) => {
 				console.log(JSON.stringify(values, null, 2));
-				dispatch(heroAdded(heroes, values));
+				dispatch(heroAdding());
 				request(
 					'http://localhost:3001/heroes',
 					'POST',
 					JSON.stringify(values, null, 2)
-				);
+				)
+					.then(() => dispatch(heroAdded(heroes, values)))
+					.catch(() => dispatch(heroAddingError()));
 			}}
 		>
 			<Form className='border p-4 shadow-lg rounded'>

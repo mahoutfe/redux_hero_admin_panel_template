@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHttp } from '../../hooks/http.hook';
 
 import {
+	heroDeleting,
 	heroDeleted,
 	heroesFetched,
 	heroesFetching,
 	heroesFetchingError,
+	heroDeletingError,
 } from '../../actions';
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
@@ -47,8 +49,10 @@ const HeroesList = () => {
 					key={id}
 					{...props}
 					onDelete={() => {
-						dispatch(heroDeleted(heroes, id));
-						request(`http://localhost:3001/heroes/${id}`, 'DELETE');
+						dispatch(heroDeleting());
+						request(`http://localhost:3001/heroes/${id}`, 'DELETE')
+							.then(() => dispatch(heroDeleted(heroes, id)))
+							.catch(() => dispatch(heroDeletingError()));
 					}}
 				/>
 			);

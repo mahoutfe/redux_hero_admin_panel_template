@@ -17,6 +17,12 @@ export const heroesFetchingError = () => {
 	};
 };
 
+export const heroDeleting = () => {
+	return {
+		type: 'HERO_DELETING',
+	};
+};
+
 export const heroDeleted = (heroes, id) => {
 	return {
 		type: 'HERO_DELETED',
@@ -24,9 +30,27 @@ export const heroDeleted = (heroes, id) => {
 	};
 };
 
-export const heroAdded = (heroes, value) => {
+export const heroDeletingError = () => {
+	return {
+		type: 'HERO_DELETING_ERROR',
+	};
+};
+
+export const heroAdding = () => {
+	return {
+		type: 'HERO_ADDING',
+	};
+};
+
+export const heroAdded = (heroes, values) => {
 	return {
 		type: 'HERO_ADDED',
-		payload: heroes.concat(value),
+		payload: heroes.concat(values),
+	};
+};
+
+export const heroAddingError = () => {
+	return {
+		type: 'HERO_ADDING_ERROR',
 	};
 };
