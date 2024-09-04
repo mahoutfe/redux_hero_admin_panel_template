@@ -26,6 +26,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				heroes: action.payload,
+				heroesLoadingStatus: 'idle',
 			};
 
 		default:
