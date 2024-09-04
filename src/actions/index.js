@@ -23,3 +23,10 @@ export const deleteHero = (heroes, id) => {
 		payload: heroes.filter((item) => item.id !== id),
 	};
 };
+
+export const addHero = (heroes, value) => {
+	return {
+		type: 'HERO_ADDING',
+		payload: heroes.concat(value),
+	};
+};

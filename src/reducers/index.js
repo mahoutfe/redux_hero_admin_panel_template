@@ -29,6 +29,13 @@ const reducer = (state = initialState, action) => {
 				heroesLoadingStatus: 'idle',
 			};
 
+		case 'HERO_ADDING':
+			return {
+				...state,
+				heroes: action.payload,
+				heroesLoadingStatus: 'idle',
+			};
+
 		default:
 			return state;
 	}
