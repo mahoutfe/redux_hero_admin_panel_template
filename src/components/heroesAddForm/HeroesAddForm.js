@@ -40,7 +40,7 @@ const HeroesAddForm = () => {
 			})}
 			onSubmit={(values) => {
 				console.log(JSON.stringify(values, null, 2));
-				dispatch(addHero(JSON.stringify(values, null, 2)));
+				dispatch(addHero(heroes, values));
 				request(
 					'http://localhost:3001/heroes',
 					'POST',
