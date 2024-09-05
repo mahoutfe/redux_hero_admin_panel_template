@@ -19,7 +19,7 @@ import { heroAdded, heroAdding, heroAddingError } from '../../actions';
 const HeroesAddForm = () => {
 	const { heroes } = useSelector((state) => state);
 	const dispatch = useDispatch();
-	const { request } = useHttp();
+	const { request, clearError } = useHttp();
 
 	return (
 		<Formik
@@ -39,6 +39,7 @@ const HeroesAddForm = () => {
 				element: Yup.string().required('Выберите элемент!'),
 			})}
 			onSubmit={(values) => {
+				clearError();
 				console.log(JSON.stringify(values, null, 2));
 				dispatch(heroAdding());
 				request(
