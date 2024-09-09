@@ -24,7 +24,7 @@ const HeroesAddForm = () => {
 	return (
 		<Formik
 			initialValues={{
-				id: uuidv4(),
+				id: '',
 				name: '',
 				description: '',
 				element: '',
@@ -40,6 +40,7 @@ const HeroesAddForm = () => {
 			})}
 			onSubmit={(values) => {
 				clearError();
+				values.id = uuidv4();
 				console.log(JSON.stringify(values, null, 2));
 				dispatch(heroAdding());
 				request(
