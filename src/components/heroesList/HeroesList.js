@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHttp } from '../../hooks/http.hook';
+// import { HeroesFilters } from '../heroesFilters/HeroesFilters';
 
 import {
 	heroDeleting,
@@ -60,6 +61,7 @@ const HeroesList = () => {
 	};
 
 	const elements = renderHeroesList(heroes);
+
 	return <ul>{elements}</ul>;
 };
 

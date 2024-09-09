@@ -54,3 +54,10 @@ export const heroAddingError = () => {
 		type: 'HERO_ADDING_ERROR',
 	};
 };
+
+export const filterSelected = (element) => {
+	return {
+		type: 'FILTER_SELECTED',
+		payload: element,
+	};
+};
