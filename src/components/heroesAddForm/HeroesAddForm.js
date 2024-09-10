@@ -48,7 +48,7 @@ const HeroesAddForm = () => {
 					'POST',
 					JSON.stringify(values, null, 2)
 				)
-					.then(() => dispatch(heroAdded(heroes, values)))
+					.then(() => dispatch(heroAdded(values)))
 					.catch(() => dispatch(heroAddingError()));
 			}}
 		>
