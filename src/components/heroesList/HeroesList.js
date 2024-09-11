@@ -3,25 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHttp } from '../../hooks/http.hook';
 
 import {
-	heroDeleting,
 	heroDeleted,
+	heroDeletingError,
 	heroesFetched,
 	heroesFetching,
 	heroesFetchingError,
-	heroDeletingError,
 } from '../../actions';
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
-
+import Switcher from '../switcher/Switcher';
 // Задача для этого компонента:
 // При клике на "крестик" идет удаление персонажа из общего состояния
 // Усложненная задача:
 // Удаление идет и с json файла при помощи метода DELETE
 
 const HeroesList = () => {
-	const { filter, heroes, heroesLoadingStatus } = useSelector((state) => state);
+	const { selectedFilter, heroes, heroesLoadingStatus } = useSelector(
+		(state) => state
+	);
 	const dispatch = useDispatch();
 	const { request } = useHttp();
+	const { filteredHeroes } = Switcher(heroes, selectedFilter);
 
 	useEffect(() => {
 		dispatch(heroesFetching());
@@ -49,7 +51,6 @@ const HeroesList = () => {
 					key={id}
 					{...props}
 					onDelete={() => {
-						dispatch(heroDeleting());
 						request(`http://localhost:3001/heroes/${id}`, 'DELETE')
 							.then(() => dispatch(heroDeleted(id)))
 							.catch(() => dispatch(heroDeletingError()));
@@ -59,23 +60,24 @@ const HeroesList = () => {
 		});
 	};
 
-	const filterElement = (heroes, filter) => {
-		switch (filter) {
-			case 'fire':
-				return heroes.filter((item) => item.element === 'fire');
-			case 'water':
-				return heroes.filter((item) => item.element === 'water');
-			case 'wind':
-				return heroes.filter((item) => item.element === 'wind');
-			case 'earth':
-				return heroes.filter((item) => item.element === 'earth');
+	// const filterElement = (heroes, selectedFilter) => {
+	// 	switch (selectedFilter) {
+	// 		case 'fire':
+	// 			return heroes.filter((item) => item.element === 'fire');
+	// 		case 'water':
+	// 			return heroes.filter((item) => item.element === 'water');
+	// 		case 'wind':
+	// 			return heroes.filter((item) => item.element === 'wind');
+	// 		case 'earth':
+	// 			return heroes.filter((item) => item.element === 'earth');
 
-			default:
-				return heroes;
-		}
-	};
+	// 		default:
+	// 			return heroes;
+	// 	}
+	// };
 
-	const elements = renderHeroesList(filterElement(heroes, filter));
+	// const elements = renderHeroesList(filterElement(heroes, selectedFilter));
+	const elements = renderHeroesList(filteredHeroes);
 
 	return <ul>{elements}</ul>;
 };
