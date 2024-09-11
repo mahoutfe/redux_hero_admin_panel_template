@@ -23,10 +23,10 @@ export const heroDeleting = () => {
 	};
 };
 
-export const heroDeleted = (heroes, id) => {
+export const heroDeleted = (id) => {
 	return {
 		type: 'HERO_DELETED',
-		payload: heroes.filter((item) => item.id !== id),
+		payload: id,
 	};
 };
 

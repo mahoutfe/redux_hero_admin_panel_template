@@ -9,7 +9,7 @@
 // данных из фильтров
 
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
 import { useHttp } from '../../hooks/http.hook';
@@ -17,7 +17,6 @@ import { useHttp } from '../../hooks/http.hook';
 import { heroAdded, heroAdding, heroAddingError } from '../../actions';
 
 const HeroesAddForm = () => {
-	const { heroes } = useSelector((state) => state);
 	const dispatch = useDispatch();
 	const { request, clearError } = useHttp();
 

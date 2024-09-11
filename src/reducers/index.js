@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) => {
 		case 'HERO_DELETED':
 			return {
 				...state,
-				heroes: action.payload,
+				heroes: state.heroes.filter((item) => item.id !== action.payload),
 				heroesLoadingStatus: 'idle',
 			};
 

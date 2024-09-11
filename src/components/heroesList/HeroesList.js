@@ -51,7 +51,7 @@ const HeroesList = () => {
 					onDelete={() => {
 						dispatch(heroDeleting());
 						request(`http://localhost:3001/heroes/${id}`, 'DELETE')
-							.then(() => dispatch(heroDeleted(heroes, id)))
+							.then(() => dispatch(heroDeleted(id)))
 							.catch(() => dispatch(heroDeletingError()));
 					}}
 				/>
