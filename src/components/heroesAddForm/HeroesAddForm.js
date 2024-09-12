@@ -8,13 +8,28 @@
 // Элементы <option></option> желательно сформировать на базе
 // данных из фильтров
 
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik, useField } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
 import { useHttp } from '../../hooks/http.hook';
 
 import { heroAdded, heroAddingError } from '../../actions';
+
+const MyTextInput = ({ label, ...props }) => {
+	const [field, meta] = useField(props);
+	return (
+		<>
+			<label htmlFor={props.name} className='form-label fs-4'>
+				{label}
+			</label>
+			<input {...props} {...field} />
+			{meta.touched && meta.error ? (
+				<div className='error'>{meta.error}</div>
+			) : null}
+		</>
+	);
+};
 
 const HeroesAddForm = () => {
 	const { filters } = useSelector((state) => state);
@@ -56,10 +71,8 @@ const HeroesAddForm = () => {
 		>
 			<Form className='border p-4 shadow-lg rounded'>
 				<div className='mb-3'>
-					<label htmlFor='name' className='form-label fs-4'>
-						Имя нового героя
-					</label>
-					<Field
+					<MyTextInput
+						label='Имя нового героя'
 						required
 						type='text'
 						name='name'
@@ -67,14 +80,11 @@ const HeroesAddForm = () => {
 						id='name'
 						placeholder='Как меня зовут?'
 					/>
-					<ErrorMessage className='error' name='name' component='div' />
 				</div>
 
 				<div className='mb-3'>
-					<label htmlFor='description' className='form-label fs-4'>
-						Описание
-					</label>
-					<Field
+					<MyTextInput
+						label='Описание'
 						required
 						name='description'
 						className='form-control'
@@ -83,7 +93,6 @@ const HeroesAddForm = () => {
 						style={{ height: '130px' }}
 						as='textarea'
 					/>
-					<ErrorMessage className='error' name='description' component='div' />
 				</div>
 
 				<div className='mb-3'>
