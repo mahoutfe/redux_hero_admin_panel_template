@@ -16,11 +16,7 @@ const reducer = (state = initialState, action) => {
 		case 'HEROES_FETCHED':
 			return {
 				...state,
-				heroes: (state.selectedFilter = 'all'
-					? action.payload
-					: action.payload.filter(
-							(item) => item.element === state.selectedFilter
-					  )),
+				heroes: action.payload,
 				heroesLoadingStatus: 'idle',
 			};
 		case 'HEROES_FETCHING_ERROR':

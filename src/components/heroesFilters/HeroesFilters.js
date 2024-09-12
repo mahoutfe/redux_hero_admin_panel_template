@@ -37,24 +37,6 @@ const HeroesFilters = () => {
 		const active = selectedFilter === element;
 		const clazz = active ? 'active' : null;
 
-		// let buttonClassName;
-
-		// switch (element) {
-		// 	case 'fire':
-		// 		buttonClassName = 'btn btn-danger';
-		// 		break;
-		// 	case 'water':
-		// 		buttonClassName = 'btn btn-primary';
-		// 		break;
-		// 	case 'wind':
-		// 		buttonClassName = 'btn btn-success';
-		// 		break;
-		// 	case 'earth':
-		// 		buttonClassName = 'btn btn-secondary';
-		// 		break;
-		// 	default:
-		// 		buttonClassName = 'btn btn-outline-dark';
-		// }
 		return (
 			<button
 				type='button'

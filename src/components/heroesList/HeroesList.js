@@ -53,27 +53,12 @@ const HeroesList = () => {
 		});
 	};
 
-	// const filterElement = (heroes, selectedFilter) => {
-	// 	if (selectedFilter !== 'all') {
-	// 		return heroes.filter((item) => item.element === selectedFilter);
-	// 	}
-	// };
+	const elements =
+		selectedFilter === 'all'
+			? renderHeroesList(heroes)
+			: renderHeroesList(filteredHeroes);
 
-	// const elements =
-	// 	selectedFilter === 'all'
-	// 		? renderHeroesList(heroes)
-	// 		: renderHeroesList(filterElement(heroes, selectedFilter));
-
-	const elements = renderHeroesList(heroes);
-	const filteredElements = renderHeroesList(filteredHeroes);
-	return (
-		<>
-			<ul>
-				{elements}
-				{filteredElements}
-			</ul>
-		</>
-	);
+	return <ul>{elements}</ul>;
 };
 
 export default HeroesList;
