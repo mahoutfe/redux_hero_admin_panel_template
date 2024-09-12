@@ -62,3 +62,10 @@ export const filtersFetchingError = () => {
 		type: 'FILTERS_FETCHING_ERROR',
 	};
 };
+
+export const heroesFiltered = (element) => {
+	return {
+		type: 'HEROES_FILTERED',
+		payload: element,
+	};
+};

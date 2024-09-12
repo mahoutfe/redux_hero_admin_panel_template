@@ -11,19 +11,12 @@ import {
 } from '../../actions';
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
-import Switcher from '../switcher/Switcher';
-// Задача для этого компонента:
-// При клике на "крестик" идет удаление персонажа из общего состояния
-// Усложненная задача:
-// Удаление идет и с json файла при помощи метода DELETE
 
 const HeroesList = () => {
-	const { selectedFilter, heroes, heroesLoadingStatus } = useSelector(
-		(state) => state
-	);
+	const { selectedFilter, heroes, heroesLoadingStatus, filteredHeroes } =
+		useSelector((state) => state);
 	const dispatch = useDispatch();
 	const { request } = useHttp();
-	const { filteredHeroes } = Switcher(heroes, selectedFilter);
 
 	useEffect(() => {
 		dispatch(heroesFetching());
@@ -61,25 +54,26 @@ const HeroesList = () => {
 	};
 
 	// const filterElement = (heroes, selectedFilter) => {
-	// 	switch (selectedFilter) {
-	// 		case 'fire':
-	// 			return heroes.filter((item) => item.element === 'fire');
-	// 		case 'water':
-	// 			return heroes.filter((item) => item.element === 'water');
-	// 		case 'wind':
-	// 			return heroes.filter((item) => item.element === 'wind');
-	// 		case 'earth':
-	// 			return heroes.filter((item) => item.element === 'earth');
-
-	// 		default:
-	// 			return heroes;
+	// 	if (selectedFilter !== 'all') {
+	// 		return heroes.filter((item) => item.element === selectedFilter);
 	// 	}
 	// };
 
-	// const elements = renderHeroesList(filterElement(heroes, selectedFilter));
-	const elements = renderHeroesList(filteredHeroes);
+	// const elements =
+	// 	selectedFilter === 'all'
+	// 		? renderHeroesList(heroes)
+	// 		: renderHeroesList(filterElement(heroes, selectedFilter));
 
-	return <ul>{elements}</ul>;
+	const elements = renderHeroesList(heroes);
+	const filteredElements = renderHeroesList(filteredHeroes);
+	return (
+		<>
+			<ul>
+				{elements}
+				{filteredElements}
+			</ul>
+		</>
+	);
 };
 
 export default HeroesList;

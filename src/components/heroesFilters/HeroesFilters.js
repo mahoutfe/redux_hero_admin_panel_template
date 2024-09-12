@@ -10,9 +10,10 @@ import {
 	filterSelected,
 	filtersFetched,
 	filtersFetchingError,
+	heroesFiltered,
 } from '../../actions';
 import { useHttp } from '../../hooks/http.hook';
-import Switcher from '../switcher/Switcher';
+
 const HeroesFilters = () => {
 	const { filters, selectedFilter, filtersLoadingStatus } = useSelector(
 		(state) => state
@@ -32,11 +33,10 @@ const HeroesFilters = () => {
 		return <h5 className='text-center mt-5'>Ошибка загрузки</h5>;
 	}
 
-	const buttons = filters.map(({ element, label }) => {
+	const buttons = filters.map(({ element, label, className }) => {
 		const active = selectedFilter === element;
 		const clazz = active ? 'active' : null;
 
-		let buttonClassName = Switcher(element);
 		// let buttonClassName;
 
 		// switch (element) {
@@ -58,10 +58,11 @@ const HeroesFilters = () => {
 		return (
 			<button
 				type='button'
-				className={`${buttonClassName} ${clazz}`}
+				className={`${className} ${clazz}`}
 				key={element}
 				onClick={() => {
 					dispatch(filterSelected(element));
+					dispatch(heroesFiltered(element));
 				}}
 			>
 				{label}
