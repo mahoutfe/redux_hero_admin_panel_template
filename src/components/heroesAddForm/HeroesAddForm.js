@@ -18,12 +18,17 @@ import { heroAdded, heroAddingError } from '../../actions';
 
 const MyTextInput = ({ label, ...props }) => {
 	const [field, meta] = useField(props);
+	const isTextarea = props.as === 'textarea';
 	return (
 		<>
 			<label htmlFor={props.name} className='form-label fs-4'>
 				{label}
 			</label>
-			<input {...props} {...field} />
+			{isTextarea ? (
+				<textarea {...props} {...field} />
+			) : (
+				<input {...props} {...field} />
+			)}
 			{meta.touched && meta.error ? (
 				<div className='error'>{meta.error}</div>
 			) : null}
