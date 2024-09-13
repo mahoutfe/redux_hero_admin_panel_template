@@ -42,7 +42,7 @@ const HeroesAddForm = () => {
 	const { request, clearError } = useHttp();
 
 	const options = filters.map(({ element, label }) => {
-		return <option value={element}>{label}</option>;
+		if (element !== 'all') return <option value={element}>{label}</option>;
 	});
 	return (
 		<Formik
