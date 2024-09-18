@@ -17,36 +17,9 @@ export const heroesFetchingError = () => {
 	};
 };
 
-export const heroDeleted = (id) => {
+export const filtersFetching = () => {
 	return {
-		type: 'HERO_DELETED',
-		payload: id,
-	};
-};
-
-export const heroDeletingError = () => {
-	return {
-		type: 'HERO_DELETING_ERROR',
-	};
-};
-
-export const heroAdded = (values) => {
-	return {
-		type: 'HERO_ADDED',
-		payload: values,
-	};
-};
-
-export const heroAddingError = () => {
-	return {
-		type: 'HERO_ADDING_ERROR',
-	};
-};
-
-export const filterSelected = (element) => {
-	return {
-		type: 'FILTER_SELECTED',
-		payload: element,
+		type: 'FILTERS_FETCHING',
 	};
 };
 
@@ -63,9 +36,23 @@ export const filtersFetchingError = () => {
 	};
 };
 
-export const heroesFiltered = (element) => {
+export const activeFilterChanged = (filter) => {
 	return {
-		type: 'HEROES_FILTERED',
-		payload: element,
+		type: 'ACTIVE_FILTER_CHANGED',
+		payload: filter,
+	};
+};
+
+export const heroCreated = (hero) => {
+	return {
+		type: 'HERO_CREATED',
+		payload: hero,
+	};
+};
+
+export const heroDeleted = (id) => {
+	return {
+		type: 'HERO_DELETED',
+		payload: id,
 	};
 };
