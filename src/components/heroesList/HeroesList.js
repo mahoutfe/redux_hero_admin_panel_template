@@ -10,7 +10,7 @@ import { fetchHeroes, heroDeleted } from './heroesSlice';
 import './heroesList.scss';
 
 const HeroesList = () => {
-	const filterdHeroesSelector = createSelector(
+	const filteredHeroesSelector = createSelector(
 		(state) => state.filters.activeFilter,
 		(state) => state.heroes.heroes,
 		(filter, heroes) => {
@@ -21,13 +21,13 @@ const HeroesList = () => {
 			}
 		}
 	);
-	const filteredHeroes = useSelector(filterdHeroesSelector);
+	const filteredHeroes = useSelector(filteredHeroesSelector);
 
 	const heroesLoadingStatus = useSelector(
 		(state) => state.heroes.heroesLoadingStatus
 	);
 	const dispatch = useDispatch();
-	const request = useHttp();
+	const { request } = useHttp();
 
 	useEffect(() => {
 		dispatch(fetchHeroes());
