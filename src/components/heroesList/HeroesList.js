@@ -1,13 +1,11 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { createSelector } from 'reselect';
 import { useHttp } from '../../hooks/http.hook';
-
-import { fetchHeroes } from '../../actions';
-import { heroDeleted } from './heroesSlice';
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
+import { fetchHeroes, heroDeleted } from './heroesSlice';
 
 import './heroesList.scss';
 
@@ -29,10 +27,10 @@ const HeroesList = () => {
 		(state) => state.heroes.heroesLoadingStatus
 	);
 	const dispatch = useDispatch();
-	const { request } = useHttp();
+	const request = useHttp();
 
 	useEffect(() => {
-		dispatch(fetchHeroes(request));
+		dispatch(fetchHeroes());
 
 		// eslint-disable-next-line
 	}, []);
