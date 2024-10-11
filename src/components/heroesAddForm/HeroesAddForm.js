@@ -2,13 +2,12 @@ import { useHttp } from '../../hooks/http.hook';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { store } from '../../store';
+import store from '../../store';
 
-import { selectAll } from './filtersSlice';
+import { selectAll } from '../heroesFilters/filtersSlice';
 import { heroCreated } from '../heroesList/heroesSlice';
 
 const HeroesAddForm = () => {
-	// Состояния для контроля формы
 	const [heroName, setHeroName] = useState('');
 	const [heroDescr, setHeroDescr] = useState('');
 	const [heroElement, setHeroElement] = useState('');
@@ -46,6 +45,7 @@ const HeroesAddForm = () => {
 
 		if (filters && filters.length > 0) {
 			return filters.map(({ name, label }) => {
+				// eslint-disable-next-line
 				if (name === 'all') return;
 
 				return (
